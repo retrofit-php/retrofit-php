@@ -23,16 +23,17 @@ jobs:
           persist-credentials: false
 
       - name: Generate RetrofitBot token
-        id: generate_token
-        uses: tibdex/github-app-token@v2.1.0
+        uses: actions/create-github-app-token@df432ceedc7162793a195dd1713ff69aefc7379e # v2.0.6
+        id: app-token
         with:
-          app_id: ${{ secrets.RETROFIT_BOT_APP_ID }}
-          private_key: ${{ secrets.RETROFIT_BOT_PRIVATE_KEY }}
+          app-id: ${{ secrets.RETROFIT_BOT_APP_ID }}
+          private-key: ${{ secrets.RETROFIT_BOT_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
 
       - name: Set RetrofitBot token
         uses: frankdejonge/use-github-token@1.1.0
         with:
-          authentication: 'RetrofitBot:${{ steps.generate_token.outputs.token }}'
+          authentication: 'RetrofitBot:${{ steps.app-token.outputs.token }}'
           name: github-actions[bot]
           email: github-actions[bot]@users.noreply.github.com
 
