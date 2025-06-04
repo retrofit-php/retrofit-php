@@ -29,9 +29,9 @@ jobs:
           app-id: ${{ secrets.RETROFIT_BOT_APP_ID }}
           private-key: ${{ secrets.RETROFIT_BOT_PRIVATE_KEY }}
           repositories: |
-            thulium/retrofit-php-core
-            thulium/retrofit-php-client-guzzle7
-            thulium/retrofit-php-converter-symfony-serializer
+            retrofit-php-core
+            retrofit-php-client-guzzle7
+            retrofit-php-converter-symfony-serializer
 
       - name: Set RetrofitBot token
         uses: frankdejonge/use-github-token@1.1.0
