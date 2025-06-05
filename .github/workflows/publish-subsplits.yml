@@ -14,7 +14,7 @@ on:
 jobs:
   publish:
     runs-on:
-      groups: thulium-ubuntu-runners
+      group: thulium-ubuntu-runners
     permissions:
       contents: write
 
