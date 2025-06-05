@@ -2,14 +2,14 @@ name: Publish Sub-Split
 
 on:
   push:
-#    branches:
-#      - main
-#  create:
-#    tags:
-#      - '*'
-#  delete:
-#    tags:
-#      - '*'
+    branches:
+      - main
+  create:
+    tags:
+      - '*'
+  delete:
+    tags:
+      - '*'
 
 jobs:
   publish:
