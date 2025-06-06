@@ -110,10 +110,14 @@ interface FullyValidApi
     #[Multipart]
     #[ResponseBody('string')]
     public function addPart(
-        #[Part('string')] string $p1,
-        #[Part('userRequest')] UserRequest $p2,
-        #[Part] PartInterface $p3,
-        #[Part('stream')] StreamInterface $p4,
+        #[Part('string')]
+        string $p1,
+        #[Part('userRequest')]
+        UserRequest $p2,
+        #[Part]
+        PartInterface $p3,
+        #[Part('stream')]
+        StreamInterface $p4,
     ): Call;
 
     #[POST('/users')]

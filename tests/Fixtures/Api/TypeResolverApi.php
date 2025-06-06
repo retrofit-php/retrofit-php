@@ -17,11 +17,16 @@ interface TypeResolverApi
     #[GET('/users')]
     #[ResponseBody('string')]
     public function scalarTypes(
-        #[Query('bool')] bool $boolParam,
-        #[Query('float')] float $floatParam,
-        #[Query('int')] int $intParam,
-        #[Query('mixed')] mixed $mixedParam,
-        #[Query('string')] string $stringParam,
+        #[Query('bool')]
+        bool $boolParam,
+        #[Query('float')]
+        float $floatParam,
+        #[Query('int')]
+        int $intParam,
+        #[Query('mixed')]
+        mixed $mixedParam,
+        #[Query('string')]
+        string $stringParam,
     ): Call;
 
     #[GET('/users')]
@@ -34,11 +39,16 @@ interface TypeResolverApi
      */
     #[ResponseBody('string')]
     public function arrayOfScalarTypes(
-        #[Query('bool')] array $boolParams,
-        #[Query('float')] array $floatParams,
-        #[Query('int')] array $intParams,
-        #[Query('mixed')] array $mixedParams,
-        #[Query('string')] array $stringParams,
+        #[Query('bool')]
+        array $boolParams,
+        #[Query('float')]
+        array $floatParams,
+        #[Query('int')]
+        array $intParams,
+        #[Query('mixed')]
+        array $mixedParams,
+        #[Query('string')]
+        array $stringParams,
     ): Call;
 
     #[POST('/users')]

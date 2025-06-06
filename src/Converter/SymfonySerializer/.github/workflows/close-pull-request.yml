@@ -7,7 +7,8 @@ on:
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on:
+      group: thulium-ubuntu-runners
     steps:
       - uses: superbrothers/close-pull-request@v3.1.2
         with:
