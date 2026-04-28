@@ -13,8 +13,7 @@ on:
 
 jobs:
   publish:
-    runs-on:
-      group: thulium-ubuntu-runners
+    runs-on: ubuntu-latest
     permissions:
       contents: write
 

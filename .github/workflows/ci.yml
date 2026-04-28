@@ -10,8 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on:
-      group: thulium-ubuntu-runners
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:

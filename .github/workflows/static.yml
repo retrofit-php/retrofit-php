@@ -10,8 +10,7 @@ on:
 
 jobs:
   phpstan:
-    runs-on:
-      group: thulium-ubuntu-runners
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: true
