@@ -16,7 +16,7 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.4.1",
         "guzzlehttp/psr7": "~2.9.0",
         "symfony/serializer": "~7.4.8"
     },
