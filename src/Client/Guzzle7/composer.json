@@ -1,5 +1,5 @@
 {
-    "name": "thulium/retrofit-php-client-guzzle7",
+    "name": "retrofit-php/retrofit-php-client-guzzle7",
     "description": "Retrofit for PHP - Guzzle7 Client",
     "type": "library",
     "keywords": [
@@ -9,10 +9,10 @@
         "rest-client",
         "retrofit"
     ],
-    "homepage": "https://github.com/thulium/retrofit-php",
+    "homepage": "https://github.com/retrofit-php/retrofit-php",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/thulium/retrofit-php/issues"
+        "issues": "https://github.com/retrofit-php/retrofit-php/issues"
     },
     "minimum-stability": "stable",
     "require": {

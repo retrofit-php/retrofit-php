@@ -1,5 +1,5 @@
 {
-    "name": "thulium/retrofit-php-converter-symfony-serializer",
+    "name": "retrofit-php/retrofit-php-converter-symfony-serializer",
     "description": "Retrofit for PHP - Symfony Serializer Converter",
     "type": "library",
     "keywords": [
@@ -9,10 +9,10 @@
         "rest-client",
         "retrofit"
     ],
-    "homepage": "https://github.com/thulium/retrofit-php",
+    "homepage": "https://github.com/retrofit-php/retrofit-php",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/thulium/retrofit-php/issues"
+        "issues": "https://github.com/retrofit-php/retrofit-php/issues"
     },
     "minimum-stability": "stable",
     "require": {

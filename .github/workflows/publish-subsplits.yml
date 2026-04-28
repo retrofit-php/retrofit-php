@@ -30,7 +30,7 @@ jobs:
         with:
           app-id: ${{ secrets.RETROFIT_BOT_APP_ID }}
           private-key: ${{ secrets.RETROFIT_BOT_PRIVATE_KEY }}
-          owner: thulium
+          owner: retrofit-php
           repositories: |
             retrofit-php
             retrofit-php-core

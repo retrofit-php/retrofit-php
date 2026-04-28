@@ -2,34 +2,34 @@
 
 A type-safe HTTP client for PHP.
 
-This is a PHP port of [square/retrofit](https://github.com/square/retrofit), under Thulium umbrella.
+This is a PHP port of [square/retrofit](https://github.com/square/retrofit).
 
 ## Installation
 
 Retrofit requires PHP >=8.4
 
 ```
-composer require thulium/retrofit-php-core
+composer require retrofit-php/retrofit-php-core
 ```
 
 Please make sure you also install an HTTP client implementation.
 
 HTTP clients:
 
-* [Guzzle7](https://github.com/thulium/retrofit-php-client-guzzle7)
+* [Guzzle7](https://github.com/retrofit-php/retrofit-php-client-guzzle7)
 
 ```
-composer require thulium/retrofit-php-client-guzzle7
+composer require retrofit-php/retrofit-php-client-guzzle7
 ```
 
 To handle more advanced request and responses install a converter.
 
 Converters:
 
-* [Symfony Serializer](https://github.com/thulium/retrofit-php-converter-symfony-serializer)
+* [Symfony Serializer](https://github.com/retrofit-php/retrofit-php-converter-symfony-serializer)
 
 ```
-composer require thulium/retrofit-php-converter-symfony-serializer
+composer require retrofit-php/retrofit-php-converter-symfony-serializer
 ```
 
 ## Introduction

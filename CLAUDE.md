@@ -36,9 +36,9 @@ PHPUnit runs with `failOnDeprecation`, `failOnRisky`, `failOnWarning` and random
 
 This is a **monorepo published as three subsplits** (see `config.subsplit-publish.json`). Each subdirectory has its own `composer.json` with its own dependency set; do not pull cross-package deps that aren't already declared.
 
-- `src/Core` → `thulium/retrofit-php-core` — the engine. Public API + internals.
-- `src/Client/Guzzle7` → `thulium/retrofit-php-client-guzzle7` — `HttpClient` impl using Guzzle 7. Depends only on `guzzlehttp/guzzle`, NOT on Core (loose coupling via interface).
-- `src/Converter/SymfonySerializer` → `thulium/retrofit-php-converter-symfony-serializer` — `ConverterFactory` impl using `symfony/serializer`.
+- `src/Core` → `retrofit-php/retrofit-php-core` — the engine. Public API + internals.
+- `src/Client/Guzzle7` → `retrofit-php/retrofit-php-client-guzzle7` — `HttpClient` impl using Guzzle 7. Depends only on `guzzlehttp/guzzle`, NOT on Core (loose coupling via interface).
+- `src/Converter/SymfonySerializer` → `retrofit-php/retrofit-php-converter-symfony-serializer` — `ConverterFactory` impl using `symfony/serializer`.
 
 Top-level `composer.json` aggregates everything for development; downstream users install only the splits they need.
 
