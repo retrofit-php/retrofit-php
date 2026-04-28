@@ -32,6 +32,7 @@ trait WithQueryParameter
                 );
             }
 
+            /** @var list<string> */
             return Arrays::map($value, fn(mixed $v): string => $this->converter->convert($v));
         }
 

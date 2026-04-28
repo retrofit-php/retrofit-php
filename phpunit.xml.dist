@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.2/phpunit.xsd"
-         backupStaticProperties="true"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         executionOrder="random"
-         failOnDeprecation="true"
-         failOnRisky="true"
-         failOnWarning="true"
->
-    <coverage/>
-
-    <source>
-        <include>
-            <directory>./src</directory>
-        </include>
-    </source>
-
-    <testsuites>
-        <testsuite name="Retrofit PHP Test Suite">
-            <directory>./tests</directory>
-        </testsuite>
-    </testsuites>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/13.1/phpunit.xsd" backupStaticProperties="true" bootstrap="vendor/autoload.php" colors="true" executionOrder="random" failOnDeprecation="true" failOnRisky="true" failOnWarning="true">
+  <coverage/>
+  <source restrictNotices="true" restrictWarnings="true" ignoreIndirectDeprecations="true">
+    <include>
+      <directory>./src</directory>
+    </include>
+  </source>
+  <testsuites>
+    <testsuite name="Retrofit PHP Test Suite">
+      <directory>./tests</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

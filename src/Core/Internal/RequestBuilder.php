@@ -84,12 +84,15 @@ class RequestBuilder
     {
         if (is_null($value)) {
             $name = Arrays::toArray($name);
-            $this->queries = Arrays::map($name, fn(string $item) => $encoded ? $item : rawurlencode($item));
+            /** @var list<string> $queries */
+            $queries = Arrays::map($name, fn(string $item) => $encoded ? $item : rawurlencode($item));
+            $this->queries = $queries;
         } else {
             if (is_array($name)) {
                 throw new RuntimeException('Cannot add query param name when is an array.');
             }
 
+            /** @var list<string> $value */
             $value = Arrays::toArray($value);
             foreach ($value as $item) {
                 if (!$encoded) {

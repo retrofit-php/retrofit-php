@@ -178,7 +178,7 @@ readonly class ServiceMethodFactory
         return $defaultHeaders;
     }
 
-    /** @return array<int, ParameterHandler> */
+    /** @return list<ParameterHandler> */
     private function getParameterHandlers(HttpRequest $httpRequest, ?Encoding $encoding, ReflectionMethod $reflectionMethod): array
     {
         $docCommentParams = [];
@@ -234,7 +234,7 @@ readonly class ServiceMethodFactory
                 $gotPart = true;
             }
 
-            $type = Type::create($reflectionMethod, $reflectionParameter, $docCommentParams);
+            $type = Type::create($reflectionMethod, $reflectionParameter, array_values($docCommentParams));
 
             $parameterHandlerFactory = $this->parameterHandlerFactoryProvider->get($reflectionAttribute->getName());
             $parameterHandler = $parameterHandlerFactory->create($newInstance, $httpRequest, $encoding, $reflectionMethod, $position, $type);
@@ -258,7 +258,7 @@ readonly class ServiceMethodFactory
 
         ksort($parameterHandlers);
 
-        return $parameterHandlers;
+        return array_values($parameterHandlers);
     }
 
     private function getResponseBodyConverter(ReflectionMethod $reflectionMethod): ?ResponseBodyConverter

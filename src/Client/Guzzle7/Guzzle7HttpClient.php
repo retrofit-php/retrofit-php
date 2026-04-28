@@ -75,8 +75,8 @@ class Guzzle7HttpClient implements HttpClient
 
         $pool = new Pool($this->client, $requests(), [
             'concurrency' => $this->concurrency,
-            'fulfilled' => fn(ResponseInterface $response, $index) => $requestList[$index]['onResponse']($response),
-            'rejected' => function ($reason, $index) use ($requestList) {
+            'fulfilled' => fn(ResponseInterface $response, int $index) => $requestList[$index]['onResponse']($response),
+            'rejected' => function (mixed $reason, int $index) use ($requestList) {
                 if ($reason instanceof RequestException && !is_null($reason->getResponse())) {
                     return $requestList[$index]['onResponse']($reason->getResponse());
                 }

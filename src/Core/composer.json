@@ -17,12 +17,12 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.4",
-        "guzzlehttp/psr7": "^2.5",
+        "guzzlehttp/psr7": "~2.9.0",
         "letsdrink/ouzo-goodies": "dev-master",
-        "nikic/php-parser": "^4.16",
-        "phpdocumentor/reflection-docblock": "^5.3",
-        "psr/http-message": "^2.0",
-        "rawr/t-regx": "^0.41"
+        "nikic/php-parser": "~5.7.0",
+        "phpdocumentor/reflection-docblock": "~6.0.3",
+        "psr/http-message": "~2.0",
+        "rawr/t-regx": "~0.41.5"
     },
     "autoload": {
         "psr-4": {

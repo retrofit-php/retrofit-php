@@ -52,6 +52,7 @@ readonly class Response
      */
     public function headers(): array
     {
+        /** @var array<string, string[]> */
         return $this->rawResponse->getHeaders();
     }
 
