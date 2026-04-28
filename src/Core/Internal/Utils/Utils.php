@@ -88,11 +88,13 @@ readonly class Utils
      */
     public static function sortParameterAttributesByPriorities(array $reflectionParameters): array
     {
+        /** @var array<class-string, int> $attributeToPriority */
         static $attributeToPriority = [
             Url::class => 1,
         ];
         static $defaultNoPriorityFactor = 1_000;
 
+        /** @var list<ReflectionParameter> */
         return Arrays::sort($reflectionParameters, function (ReflectionParameter $a, ReflectionParameter $b) use ($attributeToPriority, $defaultNoPriorityFactor): int {
             $aPriority = $attributeToPriority[$a->getAttributes()[0]->getName()] ?? $defaultNoPriorityFactor;
             $bPriority = $attributeToPriority[$b->getAttributes()[0]->getName()] ?? $defaultNoPriorityFactor;
