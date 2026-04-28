@@ -83,7 +83,7 @@ class PartParameterHandlerTest extends TestCase
     {
         // given
         $partParameterHandler = new PartParameterHandler('some-part-name', MimeEncoding::BIT_7, BuiltInConverters::JsonEncodeRequestBodyConverter(), $this->reflectionMethod, 0);
-        $part = (new UserRequest())
+        $part = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 

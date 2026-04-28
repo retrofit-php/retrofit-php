@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Retrofit\Core\Multipart;
 
 use Psr\Http\Message\StreamInterface;
+use Override;
 
 /**
  * @api
@@ -27,21 +28,25 @@ class MultipartBody
             {
             }
 
+            #[Override]
             public function getName(): string
             {
                 return $this->name;
             }
 
+            #[Override]
             public function getBody(): StreamInterface|string
             {
                 return $this->body;
             }
 
+            #[Override]
             public function getHeaders(): array
             {
                 return $this->headers;
             }
 
+            #[Override]
             public function getFilename(): ?string
             {
                 return $this->filename;

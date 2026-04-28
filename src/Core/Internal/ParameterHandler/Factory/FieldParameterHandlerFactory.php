@@ -13,6 +13,7 @@ use Retrofit\Core\Internal\ParameterHandler\FieldParameterHandler;
 use Retrofit\Core\Internal\ParameterHandler\ParameterHandler;
 use Retrofit\Core\Internal\Utils\Utils;
 use Retrofit\Core\Type;
+use Override;
 
 /**
  * @extends AbstractParameterHandlerFactory<Field>
@@ -22,6 +23,7 @@ use Retrofit\Core\Type;
 readonly class FieldParameterHandlerFactory extends AbstractParameterHandlerFactory
 {
     /** @param Field $param */
+    #[Override]
     public function create(
         ParameterAttribute $param,
         HttpRequest $httpRequest,

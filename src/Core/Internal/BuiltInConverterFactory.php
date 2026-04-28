@@ -10,12 +10,14 @@ use Retrofit\Core\Converter\RequestBodyConverter;
 use Retrofit\Core\Converter\ResponseBodyConverter;
 use Retrofit\Core\Converter\StringConverter;
 use Retrofit\Core\Type;
+use Override;
 
 /**
  * @internal
  */
 readonly class BuiltInConverterFactory implements ConverterFactory
 {
+    #[Override]
     public function requestBodyConverter(Type $type): ?RequestBodyConverter
     {
         if ($type->isA(StreamInterface::class)) {
@@ -27,6 +29,7 @@ readonly class BuiltInConverterFactory implements ConverterFactory
         return null;
     }
 
+    #[Override]
     public function responseBodyConverter(Type $type): ?ResponseBodyConverter
     {
         if ($type->isA(StreamInterface::class)) {
@@ -38,6 +41,7 @@ readonly class BuiltInConverterFactory implements ConverterFactory
         return null;
     }
 
+    #[Override]
     public function stringConverter(Type $type): ?StringConverter
     {
         if ($type->isScalar()) {

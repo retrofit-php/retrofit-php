@@ -43,7 +43,7 @@ class RetrofitBuilderTest extends TestCase
         // given
         /** @var HttpClient|MockInterface $httpClient */
         $httpClient = Mock::create(HttpClient::class);
-        $retrofitBuilder = (new RetrofitBuilder())->client($httpClient);
+        $retrofitBuilder = new RetrofitBuilder()->client($httpClient);
 
         // when
         CatchException::when($retrofitBuilder)->build();
@@ -60,7 +60,7 @@ class RetrofitBuilderTest extends TestCase
         // given
         /** @var HttpClient|MockInterface $httpClient */
         $httpClient = Mock::create(HttpClient::class);
-        $retrofitBuilder = (new RetrofitBuilder())
+        $retrofitBuilder = new RetrofitBuilder()
             ->client($httpClient)
             ->baseUrl('https://example.com');
 
@@ -79,7 +79,7 @@ class RetrofitBuilderTest extends TestCase
         /** @var HttpClient|MockInterface $httpClient */
         $httpClient = Mock::create(HttpClient::class);
         $baseUrl = new Uri('https://example.com');
-        $retrofitBuilder = (new RetrofitBuilder())
+        $retrofitBuilder = new RetrofitBuilder()
             ->client($httpClient)
             ->baseUrl($baseUrl);
 
@@ -98,7 +98,7 @@ class RetrofitBuilderTest extends TestCase
         /** @var HttpClient|MockInterface $httpClient */
         $httpClient = Mock::create(HttpClient::class);
         $baseUrl = new Uri('https://example.com');
-        $retrofitBuilder = (new RetrofitBuilder())
+        $retrofitBuilder = new RetrofitBuilder()
             ->client($httpClient)
             ->baseUrl($baseUrl);
 
@@ -121,7 +121,7 @@ class RetrofitBuilderTest extends TestCase
         /** @var HttpClient|MockInterface $httpClient */
         $httpClient = Mock::create(HttpClient::class);
         $baseUrl = new Uri('https://example.com');
-        $retrofitBuilder = (new RetrofitBuilder())
+        $retrofitBuilder = new RetrofitBuilder()
             ->client($httpClient)
             ->baseUrl($baseUrl)
             ->addConverterFactory(new TestConverterFactory());

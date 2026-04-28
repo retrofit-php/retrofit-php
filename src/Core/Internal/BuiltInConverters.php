@@ -14,6 +14,7 @@ use Retrofit\Core\Converter\StringConverter;
 use Retrofit\Core\Type;
 use RuntimeException;
 use stdClass;
+use Override;
 
 /**
  * @internal
@@ -23,6 +24,7 @@ readonly class BuiltInConverters
     public static function JsonEncodeRequestBodyConverter(): RequestBodyConverter
     {
         return new class () implements RequestBodyConverter {
+            #[Override]
             public function convert(mixed $value): StreamInterface
             {
                 return Utils::streamFor(json_encode($value));
@@ -37,6 +39,7 @@ readonly class BuiltInConverters
              * @param bool|callable|float|int|Iterator|StreamInterface|resource|string|null $value
              * @return StreamInterface
              */
+            #[Override]
             public function convert(mixed $value): StreamInterface
             {
                 return Utils::streamFor($value);
@@ -47,6 +50,7 @@ readonly class BuiltInConverters
     public static function StreamInterfaceResponseBodyConverter(): ResponseBodyConverter
     {
         return new class () implements ResponseBodyConverter {
+            #[Override]
             public function convert(StreamInterface $value): StreamInterface
             {
                 return $value;
@@ -57,6 +61,7 @@ readonly class BuiltInConverters
     public static function StdClassResponseBodyConverter(): ResponseBodyConverter
     {
         return new class () implements ResponseBodyConverter {
+            #[Override]
             public function convert(StreamInterface $value): stdClass
             {
                 $response = json_decode($value->getContents());
@@ -76,6 +81,7 @@ readonly class BuiltInConverters
             }
 
             /** @return array<mixed> */
+            #[Override]
             public function convert(StreamInterface $value): array
             {
                 $result = json_decode($value->getContents(), $this->type->parametrizedTypeIsScalar());
@@ -90,6 +96,7 @@ readonly class BuiltInConverters
     public static function VoidResponseBodyConverter(): ResponseBodyConverter
     {
         return new class () implements ResponseBodyConverter {
+            #[Override]
             public function convert(StreamInterface $value): null
             {
                 return null;
@@ -104,6 +111,7 @@ readonly class BuiltInConverters
             {
             }
 
+            #[Override]
             public function convert(StreamInterface $value): mixed
             {
                 $contents = $value->getContents();
@@ -122,6 +130,7 @@ readonly class BuiltInConverters
     public static function ToStringConverter(): StringConverter
     {
         return new class () implements StringConverter {
+            #[Override]
             public function convert(mixed $value): string
             {
                 // If it's an array or object, just serialize it.

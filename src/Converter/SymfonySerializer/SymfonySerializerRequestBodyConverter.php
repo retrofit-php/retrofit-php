@@ -9,6 +9,7 @@ use Psr\Http\Message\StreamInterface;
 use Retrofit\Core\Converter\RequestBodyConverter;
 use Retrofit\Core\Type;
 use Symfony\Component\Serializer\Serializer;
+use Override;
 
 /**
  * {@link RequestBodyConverter} implementation.
@@ -25,6 +26,7 @@ readonly class SymfonySerializerRequestBodyConverter implements RequestBodyConve
     {
     }
 
+    #[Override]
     public function convert(mixed $value): StreamInterface
     {
         if ($this->type->isA(StreamInterface::class) && $value instanceof StreamInterface) {

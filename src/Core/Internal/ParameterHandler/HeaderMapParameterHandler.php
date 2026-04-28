@@ -8,6 +8,7 @@ use ReflectionMethod;
 use Retrofit\Core\Converter\StringConverter;
 use Retrofit\Core\Internal\RequestBuilder;
 use Retrofit\Core\Internal\Utils\Utils;
+use Override;
 
 /**
  * @internal
@@ -24,6 +25,7 @@ readonly class HeaderMapParameterHandler implements ParameterHandler
     {
     }
 
+    #[Override]
     public function apply(RequestBuilder $requestBuilder, mixed $value): void
     {
         if (is_null($value)) {

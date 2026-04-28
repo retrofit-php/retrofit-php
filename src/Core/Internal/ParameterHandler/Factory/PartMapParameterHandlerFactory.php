@@ -13,6 +13,7 @@ use Retrofit\Core\Internal\ParameterHandler\ParameterHandler;
 use Retrofit\Core\Internal\ParameterHandler\PartMapParameterHandler;
 use Retrofit\Core\Internal\Utils\Utils;
 use Retrofit\Core\Type;
+use Override;
 
 /**
  * @extends AbstractParameterHandlerFactory<PartMap>
@@ -22,6 +23,7 @@ use Retrofit\Core\Type;
 readonly class PartMapParameterHandlerFactory extends AbstractParameterHandlerFactory
 {
     /** @param PartMap $param */
+    #[Override]
     public function create(
         ParameterAttribute $param,
         HttpRequest $httpRequest,

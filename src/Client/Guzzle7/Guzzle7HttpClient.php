@@ -12,6 +12,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Retrofit\Core\HttpClient;
+use Override;
 
 /**
  * Guzzle7 {@link HttpClient} implementation.
@@ -32,6 +33,7 @@ class Guzzle7HttpClient implements HttpClient
     {
     }
 
+    #[Override]
     public function send(RequestInterface $request): ResponseInterface
     {
         try {
@@ -45,6 +47,7 @@ class Guzzle7HttpClient implements HttpClient
         return $response;
     }
 
+    #[Override]
     public function sendAsync(RequestInterface $request, Closure $onResponse, Closure $onFailure): void
     {
         $this->requests[] = [
@@ -54,6 +57,7 @@ class Guzzle7HttpClient implements HttpClient
         ];
     }
 
+    #[Override]
     public function wait(): void
     {
         if ($this->requests === []) {

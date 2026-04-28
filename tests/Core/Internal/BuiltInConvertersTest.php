@@ -82,7 +82,7 @@ class BuiltInConvertersTest extends TestCase
         // given
         $converter = BuiltInConverters::ToStringConverter();
 
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setLogin('jon_doe');
 
         // when
