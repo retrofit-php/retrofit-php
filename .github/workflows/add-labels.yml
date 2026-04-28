@@ -11,8 +11,7 @@ jobs:
       contents: read
       pull-requests: write
 
-    runs-on:
-      group: thulium-ubuntu-runners
+    runs-on: ubuntu-latest
 
     steps:
       - name: Triage labels

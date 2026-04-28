@@ -14,8 +14,7 @@ jobs:
       # Write permission is required to create a GitHub release.
       contents: write
 
-    runs-on:
-      group: thulium-ubuntu-runners
+    runs-on: ubuntu-latest
 
     steps:
       - name: Generate release log

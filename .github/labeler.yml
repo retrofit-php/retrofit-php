@@ -10,8 +10,11 @@ type/dependencies:
   - head-branch: ^dependabot/
 
 module/client-guzzle7:
-  - changed-files: src/Client/Guzzle7/**/*
+  - changed-files:
+      - any-glob-to-any-file: src/Client/Guzzle7/**/*
 module/converter-symfony-serializer:
-  - changed-files: src/Converter/SymfonySerializer/**/*
+  - changed-files:
+      - any-glob-to-any-file: src/Converter/SymfonySerializer/**/*
 module/core:
-  - changed-files: src/Core/**/*
+  - changed-files:
+      - any-glob-to-any-file: src/Core/**/*
