@@ -52,7 +52,7 @@ jobs:
           key: ${{ runner.os }}-splitsh-d-101
 
       - name: Publish using splitish
-        uses: frankdejonge/use-subsplit-publish@1.0.0-beta.7
+        uses: frankdejonge/use-subsplit-publish@1.1.0
         with:
           source-branch: main
           config-path: ./config.subsplit-publish.json
