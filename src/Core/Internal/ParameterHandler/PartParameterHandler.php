@@ -11,6 +11,7 @@ use Retrofit\Core\Internal\RequestBuilder;
 use Retrofit\Core\Internal\Utils\Utils;
 use Retrofit\Core\MimeEncoding;
 use Retrofit\Core\Multipart\PartInterface;
+use Override;
 
 /**
  * @internal
@@ -29,6 +30,7 @@ readonly class PartParameterHandler implements ParameterHandler
     {
     }
 
+    #[Override]
     public function apply(RequestBuilder $requestBuilder, mixed $value): void
     {
         if (is_null($value)) {

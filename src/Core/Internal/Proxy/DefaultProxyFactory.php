@@ -34,6 +34,7 @@ use Retrofit\Core\Internal\ServiceMethod;
 use Retrofit\Core\Internal\ServiceMethodFactory;
 use Retrofit\Core\Internal\Utils\Utils;
 use Retrofit\Core\Retrofit;
+use Override;
 
 /**
  * Creates an proxy which implements all of the methods from the service interface.
@@ -83,6 +84,7 @@ readonly class DefaultProxyFactory implements ProxyFactory
      * @param ReflectionClass<T> $service
      * @return object
      */
+    #[Override]
     public function create(Retrofit $retrofit, ReflectionClass $service): object
     {
         $proxyServiceNamespace = self::SERVICE_IMPLEMENTATION_NAMESPACE_PREFIX . $service->getNamespaceName();

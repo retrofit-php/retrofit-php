@@ -36,7 +36,7 @@ class SymfonySerializerRequestBodyConverterTest extends TestCase
         $type = new Type(UserRequest::class);
         $symfonySerializerRequestBodyConverter = new SymfonySerializerRequestBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
 
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 
@@ -56,10 +56,10 @@ class SymfonySerializerRequestBodyConverterTest extends TestCase
         $symfonySerializerRequestBodyConverter = new SymfonySerializerRequestBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
 
         $userRequests = [
-            (new UserRequest())
+            new UserRequest()
                 ->setId(1)
                 ->setLogin('jon-doe'),
-            (new UserRequest())
+            new UserRequest()
                 ->setId(2)
                 ->setLogin('bill-smith'),
         ];

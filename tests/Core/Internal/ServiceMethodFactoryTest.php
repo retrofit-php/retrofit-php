@@ -394,7 +394,7 @@ class ServiceMethodFactoryTest extends TestCase
         $fileResource = $this->getFileResource('sample-image.jpg');
 
         $string = 'some-string';
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
         $partInterface = MultipartBody::Part()::createFromData('part-iface', Utils::streamFor($fileResource), [], 'image.png');
@@ -425,7 +425,7 @@ class ServiceMethodFactoryTest extends TestCase
     public function shouldAddPartMap(): void
     {
         // given
-        $part1 = (new UserRequest())
+        $part1 = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 
@@ -519,7 +519,7 @@ class ServiceMethodFactoryTest extends TestCase
     public function shouldSetBody(): void
     {
         // given
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 
@@ -542,7 +542,7 @@ class ServiceMethodFactoryTest extends TestCase
         // given
         Mock::when($this->httpClient)->send(Mock::any())->thenReturn(new Response(200, [], Utils::streamFor($body)));
 
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 
@@ -560,7 +560,7 @@ class ServiceMethodFactoryTest extends TestCase
         // given
         Mock::when($this->httpClient)->send(Mock::any())->thenReturn(new Response(200, [], Utils::streamFor('sample body')));
 
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 
@@ -598,7 +598,7 @@ class ServiceMethodFactoryTest extends TestCase
         // given
         Mock::when($this->httpClient)->send(Mock::any())->thenReturn(new Response(200, [], Utils::streamFor($body)));
 
-        $userRequest = (new UserRequest())
+        $userRequest = new UserRequest()
             ->setLogin('jon-doe');
 
         // when

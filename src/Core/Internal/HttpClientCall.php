@@ -13,6 +13,7 @@ use Retrofit\Core\HttpClient;
 use Retrofit\Core\Response;
 use RuntimeException;
 use Throwable;
+use Override;
 
 /**
  * @internal
@@ -28,12 +29,14 @@ readonly class HttpClientCall implements Call
     {
     }
 
+    #[Override]
     public function execute(): Response
     {
         $response = $this->httpClient->send($this->request());
         return $this->createResponse($response);
     }
 
+    #[Override]
     public function enqueue(Callback $callback): Call
     {
         $this->httpClient->sendAsync(
@@ -44,11 +47,13 @@ readonly class HttpClientCall implements Call
         return $this;
     }
 
+    #[Override]
     public function wait(): void
     {
         $this->httpClient->wait();
     }
 
+    #[Override]
     public function request(): RequestInterface
     {
         return $this->request;

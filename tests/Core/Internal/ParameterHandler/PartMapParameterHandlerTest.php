@@ -103,7 +103,7 @@ class PartMapParameterHandlerTest extends TestCase
         $fileResource = $this->getFileResource('sample-image.jpg');
 
         $partMapParameterHandler = new PartMapParameterHandler(MimeEncoding::BINARY, BuiltInConverters::JsonEncodeRequestBodyConverter(), $this->reflectionMethod, 0);
-        $part1 = (new UserRequest())
+        $part1 = new UserRequest()
             ->setId(1)
             ->setLogin('jon-doe');
 

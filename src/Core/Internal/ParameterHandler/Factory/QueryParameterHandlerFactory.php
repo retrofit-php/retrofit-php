@@ -12,6 +12,7 @@ use Retrofit\Core\Internal\Encoding;
 use Retrofit\Core\Internal\ParameterHandler\ParameterHandler;
 use Retrofit\Core\Internal\ParameterHandler\QueryParameterHandler;
 use Retrofit\Core\Type;
+use Override;
 
 /**
  * @extends AbstractParameterHandlerFactory<Query>
@@ -21,6 +22,7 @@ use Retrofit\Core\Type;
 readonly class QueryParameterHandlerFactory extends AbstractParameterHandlerFactory
 {
     /** @param Query $param */
+    #[Override]
     public function create(
         ParameterAttribute $param,
         HttpRequest $httpRequest,

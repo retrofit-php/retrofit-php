@@ -10,6 +10,7 @@ use Retrofit\Core\Type;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
 use Symfony\Component\Serializer\Serializer;
+use Override;
 
 /**
  * {@link ResponseBodyConverter} implementation.
@@ -26,6 +27,7 @@ readonly class SymfonySerializerResponseBodyConverter implements ResponseBodyCon
     {
     }
 
+    #[Override]
     public function convert(StreamInterface $value): mixed
     {
         if ($this->type->isA(StreamInterface::class)) {

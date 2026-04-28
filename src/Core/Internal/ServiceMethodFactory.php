@@ -34,6 +34,7 @@ use Retrofit\Core\Internal\ParameterHandler\ParameterHandler;
 use Retrofit\Core\Internal\Utils\Utils;
 use Retrofit\Core\Retrofit;
 use Retrofit\Core\Type;
+use Override;
 
 /**
  * @template T of object
@@ -73,6 +74,7 @@ readonly class ServiceMethodFactory
             {
             }
 
+            #[Override]
             public function invoke(array $args): Call
             {
                 $request = $this->requestFactory->create($args);

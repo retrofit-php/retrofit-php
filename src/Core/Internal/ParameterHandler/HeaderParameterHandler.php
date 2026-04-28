@@ -6,6 +6,7 @@ namespace Retrofit\Core\Internal\ParameterHandler;
 
 use Retrofit\Core\Converter\StringConverter;
 use Retrofit\Core\Internal\RequestBuilder;
+use Override;
 
 /**
  * @internal
@@ -19,6 +20,7 @@ readonly class HeaderParameterHandler implements ParameterHandler
     {
     }
 
+    #[Override]
     public function apply(RequestBuilder $requestBuilder, mixed $value): void
     {
         if (is_null($value)) {

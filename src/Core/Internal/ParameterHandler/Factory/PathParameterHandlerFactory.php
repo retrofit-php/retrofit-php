@@ -12,6 +12,7 @@ use Retrofit\Core\Internal\Encoding;
 use Retrofit\Core\Internal\ParameterHandler\ParameterHandler;
 use Retrofit\Core\Internal\ParameterHandler\PathParameterHandler;
 use Retrofit\Core\Type;
+use Override;
 
 /**
  * @extends AbstractParameterHandlerFactory<Path>
@@ -21,6 +22,7 @@ use Retrofit\Core\Type;
 readonly class PathParameterHandlerFactory extends AbstractParameterHandlerFactory
 {
     /** @param Path $param */
+    #[Override]
     public function create(
         ParameterAttribute $param,
         HttpRequest $httpRequest,

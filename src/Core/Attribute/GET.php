@@ -7,6 +7,7 @@ namespace Retrofit\Core\Attribute;
 use Attribute;
 use Retrofit\Core\HttpMethod;
 use Retrofit\Core\Internal\Utils\Utils;
+use Override;
 
 /**
  * Make a GET request.
@@ -24,21 +25,25 @@ readonly class GET implements HttpRequest
         $this->pathParameters = Utils::parsePathParameters($this->path);
     }
 
+    #[Override]
     public function httpMethod(): HttpMethod
     {
         return HttpMethod::GET;
     }
 
+    #[Override]
     public function path(): ?string
     {
         return $this->path;
     }
 
+    #[Override]
     public function pathParameters(): array
     {
         return $this->pathParameters;
     }
 
+    #[Override]
     public function hasBody(): bool
     {
         return false;
