@@ -6,7 +6,7 @@ This is a PHP port of [square/retrofit](https://github.com/square/retrofit), und
 
 ## Installation
 
-Retrofit requires PHP >=8.2
+Retrofit requires PHP >=8.4
 
 ```
 composer require thulium/retrofit-php-core
