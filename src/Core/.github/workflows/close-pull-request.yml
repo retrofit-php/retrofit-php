@@ -7,12 +7,11 @@ on:
 
 jobs:
   run:
-    runs-on:
-      group: thulium-ubuntu-runners
+    runs-on: ubuntu-latest
     steps:
       - uses: superbrothers/close-pull-request@v3.1.2
         with:
           comment: |
-            Thank you for your pull request. However, you have submitted this PR on the read-only sub split of 'thulium/retrofit-php'.
-            Please submit your PR on the https://github.com/thulium/retrofit-php repository.<br><br>
+            Thank you for your pull request. However, you have submitted this PR on the read-only sub split of 'retrofit-php/retrofit-php'.
+            Please submit your PR on the https://github.com/retrofit-php/retrofit-php repository.<br><br>
             Thanks!

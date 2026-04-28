@@ -1,5 +1,5 @@
 {
-    "name": "thulium/retrofit-php",
+    "name": "retrofit-php/retrofit-php",
     "description": "Retrofit for PHP - A type-safe PHP REST client",
     "type": "library",
     "keywords": [
@@ -9,10 +9,10 @@
         "rest-client",
         "retrofit"
     ],
-    "homepage": "https://github.com/thulium/retrofit-php",
+    "homepage": "https://github.com/retrofit-php/retrofit-php",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/thulium/retrofit-php/issues"
+        "issues": "https://github.com/retrofit-php/retrofit-php/issues"
     },
     "minimum-stability": "stable",
     "require": {
