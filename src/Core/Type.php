@@ -129,10 +129,6 @@ readonly class Type
             return null;
         }
 
-        if (!$param instanceof Param) {
-            throw Utils::parameterException($reflectionMethod, $reflectionParameter->getPosition(), 'Provided tag is no a Param type.');
-        }
-
         $type = $param->getType();
 
         if (!$type instanceof Array_) {
@@ -166,7 +162,7 @@ readonly class Type
         }
 
         $parserFactory = new ParserFactory();
-        $parser = $parserFactory->create(ParserFactory::PREFER_PHP7);
+        $parser = $parserFactory->createForHostVersion();
         $stmts = $parser->parse($content);
 
         if (is_null($stmts)) {

@@ -73,6 +73,7 @@ readonly class Utils
         $matcher = pattern(self::PARAM_URL_REGEX)
             ->match($path);
 
+        /** @var list<string> */
         return FluentArray::from(iterator_to_array($matcher))
             ->map(fn(Detail $detail) => $detail->get(1))
             ->unique()

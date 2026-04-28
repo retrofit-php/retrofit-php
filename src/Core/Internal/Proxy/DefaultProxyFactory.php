@@ -9,7 +9,6 @@ use PhpParser\Builder\Method;
 use PhpParser\Builder\Namespace_;
 use PhpParser\Builder\Param;
 use PhpParser\BuilderFactory;
-use PhpParser\Node;
 use PhpParser\Node\Arg;
 use PhpParser\Node\Expr\Assign;
 use PhpParser\Node\Expr\FuncCall;
@@ -17,8 +16,10 @@ use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\NullableType;
+use PhpParser\Node\Param as NodeParam;
 use PhpParser\Node\Scalar\MagicConst\Function_;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Return_;
@@ -241,7 +242,7 @@ readonly class DefaultProxyFactory implements ProxyFactory
         }
     }
 
-    /** @return list<Node> */
+    /** @return list<NodeParam> */
     private function appendMethodParameters(ReflectionMethod $method): array
     {
         $params = [];
@@ -265,8 +266,12 @@ readonly class DefaultProxyFactory implements ProxyFactory
                 $reflectionTypeName = Utils::toFQCN($reflectionTypeName);
             }
 
-            $type = $reflectionType->allowsNull() ? new NullableType($reflectionTypeName) : $reflectionTypeName;
-            $paramBuilder->setType($type);
+            if ($reflectionType->allowsNull()) {
+                $typeNode = $reflectionType->isBuiltin() ? new Identifier($reflectionTypeName) : new Name($reflectionTypeName);
+                $paramBuilder->setType(new NullableType($typeNode));
+            } else {
+                $paramBuilder->setType($reflectionTypeName);
+            }
 
             if ($parameter->isPassedByReference()) {
                 $paramBuilder->makeByRef();

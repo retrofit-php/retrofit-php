@@ -19,8 +19,8 @@
         "php": ">=8.4",
         "guzzlehttp/psr7": "^2.5",
         "letsdrink/ouzo-goodies": "dev-master",
-        "nikic/php-parser": "^4.16",
-        "phpdocumentor/reflection-docblock": "^5.3",
+        "nikic/php-parser": "^5.7",
+        "phpdocumentor/reflection-docblock": "^6.0",
         "psr/http-message": "^2.0",
         "rawr/t-regx": "^0.41"
     },
