@@ -161,4 +161,7 @@ interface FullyValidApi
     #[GET('/users')]
     #[Streaming]
     public function streamInterfaceAsResponseBody(): Call;
+
+    #[POST('/users')]
+    public function fireAndForget(#[Body] UserRequest $userRequest): Call;
 }

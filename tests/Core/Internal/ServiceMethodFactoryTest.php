@@ -573,6 +573,24 @@ class ServiceMethodFactoryTest extends TestCase
     }
 
     #[Test]
+    public function shouldHandleMissingResponseBodyAttribute(): void
+    {
+        // given
+        Mock::when($this->httpClient)->send(Mock::any())->thenReturn(new Response(200, [], Utils::streamFor('sample body')));
+
+        $userRequest = new UserRequest()
+            ->setId(1)
+            ->setLogin('jon-doe');
+
+        // when
+        $serviceMethod = $this->serviceMethodFactory->create(FullyValidApi::class, 'fireAndForget');
+
+        // then
+        $execute = $serviceMethod->invoke([$userRequest])->execute();
+        $this->assertNull($execute->body());
+    }
+
+    #[Test]
     public function shouldHandleStdClassResponseBody(): void
     {
         // given
