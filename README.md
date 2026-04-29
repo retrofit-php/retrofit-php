@@ -48,10 +48,14 @@ interface GitHubService
 The `Retrofit` class generates an implementation of the `GitHubService` interface.
 
 ```php
+// Symfony's Serializer implements both SerializerInterface and DecoderInterface,
+// so the same instance can be passed for both arguments.
+$serializer = new Serializer();
+
 $retrofit = Retrofit::Builder()
     ->baseUrl('https://api.github.com')
     ->client(new Guzzle7HttpClient(new Client()))
-    ->addConverterFactory(new SymfonySerializerConverterFactory(new Serializer()))
+    ->addConverterFactory(new SymfonySerializerConverterFactory($serializer, $serializer))
     ->build();
 
 $service = $retrofit->create(GitHubService::class);
