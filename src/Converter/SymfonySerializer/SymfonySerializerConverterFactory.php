@@ -23,7 +23,8 @@ use Override;
 readonly class SymfonySerializerConverterFactory implements ConverterFactory
 {
     public function __construct(
-        private SerializerInterface&DecoderInterface $serializer,
+        private SerializerInterface $serializer,
+        private DecoderInterface $decoder,
         private SymfonySerializerFormat $symfonySerializerFormat = SymfonySerializerFormat::JSON,
     )
     {
@@ -38,7 +39,7 @@ readonly class SymfonySerializerConverterFactory implements ConverterFactory
     #[Override]
     public function responseBodyConverter(Type $type): ?ResponseBodyConverter
     {
-        return new SymfonySerializerResponseBodyConverter($this->serializer, $this->symfonySerializerFormat, $type);
+        return new SymfonySerializerResponseBodyConverter($this->serializer, $this->decoder, $this->symfonySerializerFormat, $type);
     }
 
     #[Override]
