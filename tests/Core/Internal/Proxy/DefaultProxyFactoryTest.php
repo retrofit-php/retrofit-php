@@ -266,4 +266,20 @@ class DefaultProxyFactoryTest extends TestCase
             ->extracting(fn(ReflectionParameter $p): bool => $p->isVariadic())
             ->containsOnly(true);
     }
+
+    #[Test]
+    public function shouldNotCrashWhenCreatingProxyForSameInterfaceTwice(): void
+    {
+        // given
+        $service = new ReflectionClass(FullyValidApi::class);
+
+        // when
+        $first = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $second = $this->defaultProxyFactory->create($this->retrofit, $service);
+
+        // then
+        $this->assertInstanceOf(FullyValidApi::class, $first);
+        $this->assertInstanceOf(FullyValidApi::class, $second);
+        $this->assertSame($first::class, $second::class);
+    }
 }
