@@ -97,11 +97,13 @@ readonly class DefaultProxyFactory implements ProxyFactory
         $this->appendMethods($service, $serviceClassImplementation);
         $serviceClassImplementationInNamespace = $this->wrapInNamespace($proxyServiceNamespace, $serviceClassImplementation);
 
-        $proxyServiceClass = $this->prettyPrinterAbstract->prettyPrint([$serviceClassImplementationInNamespace->getNode()]);
-
-        eval($proxyServiceClass);
-
         $proxyServiceFQCN = Utils::toFQCN($proxyServiceNamespace, $proxyServiceClassName);
+
+        if (!class_exists($proxyServiceFQCN, false)) {
+            $proxyServiceClass = $this->prettyPrinterAbstract->prettyPrint([$serviceClassImplementationInNamespace->getNode()]);
+            eval($proxyServiceClass);
+        }
+
         return new $proxyServiceFQCN($retrofit);
     }
 
