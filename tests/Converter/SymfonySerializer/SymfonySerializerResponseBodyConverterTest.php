@@ -37,7 +37,7 @@ class SymfonySerializerResponseBodyConverterTest extends TestCase
     {
         // given
         $type = new Type(StreamInterface::class);
-        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
+        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, $this->serializer, SymfonySerializerFormat::JSON, $type);
 
         $stream = Utils::streamFor('empty');
 
@@ -53,7 +53,7 @@ class SymfonySerializerResponseBodyConverterTest extends TestCase
     {
         // given
         $type = new Type(UserRequest::class);
-        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
+        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, $this->serializer, SymfonySerializerFormat::JSON, $type);
 
         $stream = Utils::streamFor('{"id":1,"login":"jon-doe"}');
 
@@ -69,7 +69,7 @@ class SymfonySerializerResponseBodyConverterTest extends TestCase
     {
         // given
         $type = new Type('array', UserRequest::class);
-        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
+        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, $this->serializer, SymfonySerializerFormat::JSON, $type);
 
         $stream = Utils::streamFor('[{"id":1,"login":"jon-doe"},{"id":2,"login":"bill-smith"}]');
 
@@ -94,7 +94,7 @@ class SymfonySerializerResponseBodyConverterTest extends TestCase
     {
         // given
         $type = new Type($rawType);
-        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
+        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, $this->serializer, SymfonySerializerFormat::JSON, $type);
 
         $stream = Utils::streamFor($content);
 
@@ -110,7 +110,7 @@ class SymfonySerializerResponseBodyConverterTest extends TestCase
     {
         // given
         $type = new Type('array', 'string');
-        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, SymfonySerializerFormat::JSON, $type);
+        $symfonySerializerResponseBodyConverter = new SymfonySerializerResponseBodyConverter($this->serializer, $this->serializer, SymfonySerializerFormat::JSON, $type);
 
         $stream = Utils::streamFor('["value1", "value2"]');
 

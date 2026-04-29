@@ -9,7 +9,8 @@ use Retrofit\Core\Converter\RequestBodyConverter;
 use Retrofit\Core\Converter\ResponseBodyConverter;
 use Retrofit\Core\Converter\StringConverter;
 use Retrofit\Core\Type;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
+use Symfony\Component\Serializer\SerializerInterface;
 use Override;
 
 /**
@@ -22,7 +23,8 @@ use Override;
 readonly class SymfonySerializerConverterFactory implements ConverterFactory
 {
     public function __construct(
-        private Serializer $serializer,
+        private SerializerInterface $serializer,
+        private DecoderInterface $decoder,
         private SymfonySerializerFormat $symfonySerializerFormat = SymfonySerializerFormat::JSON,
     )
     {
@@ -37,7 +39,7 @@ readonly class SymfonySerializerConverterFactory implements ConverterFactory
     #[Override]
     public function responseBodyConverter(Type $type): ?ResponseBodyConverter
     {
-        return new SymfonySerializerResponseBodyConverter($this->serializer, $this->symfonySerializerFormat, $type);
+        return new SymfonySerializerResponseBodyConverter($this->serializer, $this->decoder, $this->symfonySerializerFormat, $type);
     }
 
     #[Override]

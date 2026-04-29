@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 use Retrofit\Core\Converter\RequestBodyConverter;
 use Retrofit\Core\Type;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 use Override;
 
 /**
@@ -19,7 +19,7 @@ use Override;
 readonly class SymfonySerializerRequestBodyConverter implements RequestBodyConverter
 {
     public function __construct(
-        private Serializer $serializer,
+        private SerializerInterface $serializer,
         private SymfonySerializerFormat $symfonySerializerFormat,
         private Type $type,
     )

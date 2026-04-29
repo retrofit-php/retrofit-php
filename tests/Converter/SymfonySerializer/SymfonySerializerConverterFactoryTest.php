@@ -21,7 +21,7 @@ class SymfonySerializerConverterFactoryTest extends TestCase
     {
         parent::setUp();
         $serializer = new Serializer();
-        $this->symfonySerializerConverterFactory = new SymfonySerializerConverterFactory($serializer);
+        $this->symfonySerializerConverterFactory = new SymfonySerializerConverterFactory($serializer, $serializer);
     }
 
     #[Test]
