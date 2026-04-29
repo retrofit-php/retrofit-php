@@ -7,9 +7,10 @@ namespace Retrofit\Converter\SymfonySerializer;
 use Psr\Http\Message\StreamInterface;
 use Retrofit\Core\Converter\ResponseBodyConverter;
 use Retrofit\Core\Type;
+use Symfony\Component\Serializer\Encoder\DecoderInterface;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 use Override;
 
 /**
@@ -20,7 +21,7 @@ use Override;
 readonly class SymfonySerializerResponseBodyConverter implements ResponseBodyConverter
 {
     public function __construct(
-        private Serializer $serializer,
+        private SerializerInterface&DecoderInterface $serializer,
         private SymfonySerializerFormat $symfonySerializerFormat,
         private Type $type,
     )
