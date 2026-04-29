@@ -269,6 +269,9 @@ readonly class ServiceMethodFactory
             return $this->retrofit->converterProvider->getResponseBodyConverter($responseType);
         }
         $reflectionAttributes = $reflectionMethod->getAttributes(ResponseBody::class);
+        if (empty($reflectionAttributes)) {
+            return null;
+        }
         return $this->getBodyConverter($reflectionAttributes[0]);
     }
 
