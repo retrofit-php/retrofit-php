@@ -69,9 +69,9 @@ use Override;
  */
 readonly class DefaultProxyFactory implements ProxyFactory
 {
-    private const SERVICE_IMPLEMENTATION_NAMESPACE_PREFIX = 'Retrofit\Proxy\\';
+    private const string SERVICE_IMPLEMENTATION_NAMESPACE_PREFIX = 'Retrofit\Proxy\\';
 
-    private const SERVICE_IMPLEMENTATION_CLASS_SUFFIX = 'Impl';
+    private const string SERVICE_IMPLEMENTATION_CLASS_SUFFIX = 'Impl';
 
     public function __construct(
         private BuilderFactory $builderFactory,

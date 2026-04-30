@@ -22,7 +22,7 @@ use Retrofit\Core\Internal\ConverterProvider;
 /**
  * @internal
  */
-class ParameterHandlerFactoryProvider
+readonly class ParameterHandlerFactoryProvider
 {
     /** @var array<string, AbstractParameterHandlerFactory<ParameterAttribute>> */
     private array $attributeNameToFactory;

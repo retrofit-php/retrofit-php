@@ -13,7 +13,7 @@ use Retrofit\Core\Multipart\PartInterface;
  */
 trait WithPartInterfaceHandle
 {
-    private const CONTENT_TRANSFER_ENCODING_HEADER = 'Content-Transfer-Encoding';
+    private const string CONTENT_TRANSFER_ENCODING_HEADER = 'Content-Transfer-Encoding';
 
     public function handle(RequestBuilder $requestBuilder, PartInterface $value): void
     {

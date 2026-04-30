@@ -21,9 +21,9 @@ use TRegx\CleanRegex\Match\Detail;
  */
 readonly class Utils
 {
-    private const NAMESPACE_DELIMITER = '\\';
+    private const string NAMESPACE_DELIMITER = '\\';
 
-    private const PARAM_URL_REGEX = '\{([a-zA-Z][a-zA-Z0-9_-]*)\}';
+    private const string PARAM_URL_REGEX = '\{([a-zA-Z][a-zA-Z0-9_-]*)\}';
 
     private function __construct()
     {
