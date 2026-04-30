@@ -29,7 +29,7 @@ use Retrofit\Core\Internal\Utils\Utils;
 readonly class Type
 {
     /** @var list<string> */
-    private const SCALARS = ['bool', 'int', 'float', 'string'];
+    private const array SCALARS = ['bool', 'int', 'float', 'string'];
 
     public function __construct(
         private string $rawType,

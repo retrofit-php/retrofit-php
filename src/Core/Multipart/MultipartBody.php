@@ -17,13 +17,13 @@ class MultipartBody
      */
     public static function Part(): PartInterface
     {
-        return new class () implements PartInterface {
+        return new readonly class () implements PartInterface {
             public function __construct(
-                private readonly string $name = '',
-                private readonly StreamInterface|string $body = '',
+                private string $name = '',
+                private StreamInterface|string $body = '',
                 /** @var array<string, string> */
-                private readonly array $headers = [],
-                private readonly ?string $filename = null,
+                private array $headers = [],
+                private ?string $filename = null,
             )
             {
             }

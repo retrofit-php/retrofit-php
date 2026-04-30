@@ -22,7 +22,7 @@ use RuntimeException;
  */
 class RequestBuilder
 {
-    private const PARAMETER_PLACEHOLDER = '{%s}';
+    private const string PARAMETER_PLACEHOLDER = '{%s}';
 
     private UriInterface $uri;
 

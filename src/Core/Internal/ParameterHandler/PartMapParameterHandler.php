@@ -21,7 +21,7 @@ readonly class PartMapParameterHandler implements ParameterHandler
     use WithMapParameter;
     use WithPartInterfaceHandle;
 
-    private const CONTENT_TRANSFER_ENCODING_HEADER = 'Content-Transfer-Encoding';
+    private const string CONTENT_TRANSFER_ENCODING_HEADER = 'Content-Transfer-Encoding';
 
     public function __construct(
         private MimeEncoding $encoding,
