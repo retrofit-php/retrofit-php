@@ -4,7 +4,7 @@ template: |
   $CHANGES
 categories:
   - title: '💥 Breaking changes'
-    label: 'type/epic'
+    label: 'type/breaking'
   - title: '🚀 Features'
     label: 'type/feature'
   - title: '🐛 Bug fixes'
