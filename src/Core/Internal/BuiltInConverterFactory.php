@@ -44,9 +44,6 @@ readonly class BuiltInConverterFactory implements ConverterFactory
     #[Override]
     public function stringConverter(Type $type): ?StringConverter
     {
-        if ($type->isScalar()) {
-            return BuiltInConverters::ToStringConverter();
-        }
-        return null;
+        return BuiltInConverters::ToStringConverter();
     }
 }
