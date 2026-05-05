@@ -42,7 +42,7 @@ readonly class BuiltInConverterFactory implements ConverterFactory
     }
 
     #[Override]
-    public function stringConverter(Type $type): ?StringConverter
+    public function stringConverter(Type $type): StringConverter
     {
         return BuiltInConverters::ToStringConverter();
     }
