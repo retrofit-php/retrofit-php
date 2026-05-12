@@ -44,6 +44,11 @@ jobs:
           name: github-actions[bot]
           email: github-actions[bot]@users.noreply.github.com
 
+      - name: Configure git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Cache splitsh-lite
         id: splitsh-cache
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
