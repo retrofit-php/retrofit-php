@@ -51,8 +51,13 @@ class RequestBuilder
     )
     {
         $this->uri = new Uri($baseUrl->__toString());
-        if (!is_null($this->httpRequest->path())) {
-            $this->uri = $this->uri->withPath($this->httpRequest->path());
+        $path = $this->httpRequest->path();
+        if (!is_null($path)) {
+            $parsed = new Uri($path);
+            $this->uri = $this->uri->withPath($parsed->getPath());
+            if ($parsed->getQuery() !== '') {
+                $this->uri = $this->uri->withQuery($parsed->getQuery());
+            }
         }
 
         foreach ($defaultHeaders as $name => $value) {
@@ -163,7 +168,7 @@ class RequestBuilder
     {
         if (!empty($this->queries)) {
             $query = implode('&', $this->queries);
-            $this->uri = Strings::isBlank($this->uri->getQuery()) ? $this->uri->withQuery($query) : $this->uri->withQuery("{$query}&{$this->uri->getQuery()}");
+            $this->uri = Strings::isBlank($this->uri->getQuery()) ? $this->uri->withQuery($query) : $this->uri->withQuery("{$this->uri->getQuery()}&{$query}");
         }
     }
 

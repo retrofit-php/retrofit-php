@@ -38,6 +38,63 @@ class RequestBuilderTest extends TestCase
     }
 
     #[Test]
+    public function shouldKeepStaticQueryStringFromPath(): void
+    {
+        // given
+        $requestBuilder = new RequestBuilder(new Uri('https://example.com'), new GET('/v1/personFields?limit=1000'));
+
+        // when
+        $request = $requestBuilder->build();
+
+        // then
+        $this->assertSame('https://example.com/v1/personFields?limit=1000', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldCombineStaticQueryStringWithDynamicQueryParam(): void
+    {
+        // given
+        $requestBuilder = new RequestBuilder(new Uri('https://example.com'), new GET('/v1/personFields?limit=1000'));
+
+        // when
+        $requestBuilder->addQueryParam('offset', '50', false);
+
+        // then
+        $request = $requestBuilder->build();
+        $this->assertSame('https://example.com/v1/personFields?limit=1000&offset=50', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldCombineStaticQueryStringWithMultipleDynamicQueryParams(): void
+    {
+        // given
+        $requestBuilder = new RequestBuilder(new Uri('https://example.com'), new GET('/v1/personFields?limit=1000'));
+
+        // when
+        $requestBuilder->addQueryParam('offset', '50', false);
+        $requestBuilder->addQueryParam('sort', ['name', 'created'], false);
+
+        // then
+        $request = $requestBuilder->build();
+        $this->assertSame('https://example.com/v1/personFields?limit=1000&offset=50&sort=name&sort=created', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldCombineStaticQueryStringWithPathParameter(): void
+    {
+        // given
+        $requestBuilder = new RequestBuilder(new Uri('https://example.com'), new GET('/users/{id}?expand=profile'));
+
+        // when
+        $requestBuilder->addPathParam('id', '42', false);
+        $requestBuilder->addQueryParam('lang', 'pl', false);
+
+        // then
+        $request = $requestBuilder->build();
+        $this->assertSame('https://example.com/users/42?expand=profile&lang=pl', $request->getUri()->__toString());
+    }
+
+    #[Test]
     #[TestWith(['https://foo.bar/api/users'])]
     #[TestWith([new Uri('https://foo.bar/api/users')])]
     public function shouldSetNewBaseUrl(Uri|string $uri): void
