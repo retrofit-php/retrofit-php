@@ -268,6 +268,110 @@ class DefaultProxyFactoryTest extends TestCase
     }
 
     #[Test]
+    public function shouldApplyDefaultQueryValueWhenArgumentOmitted(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when
+        $request = $impl->defaultQueryValue()->request();
+
+        // then
+        $this->assertSame('/v1/personFields?limit=1000&offset=100', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldUsePassedQueryValueInsteadOfDefault(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when
+        $request = $impl->defaultQueryValue(50)->request();
+
+        // then
+        $this->assertSame('/v1/personFields?limit=1000&offset=50', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldApplyDefaultValueWhenPassedAsNamedArgument(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when
+        $request = $impl->defaultQueryValue(offset: 7)->request();
+
+        // then
+        $this->assertSame('/v1/personFields?limit=1000&offset=7', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldApplyDefaultPathValueWhenArgumentOmitted(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when & then
+        $this->assertSame('/users/100', $impl->defaultValue()->request()->getUri()->__toString());
+        $this->assertSame('/users/5', $impl->defaultValue(5)->request()->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldApplyNonNullDefaultForNullableQueryParameterWhenArgumentOmitted(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when
+        $request = $impl->nullableDefaultQueryValue()->request();
+
+        // then
+        $this->assertSame('/v1/personFields?limit=1000&offset=100', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldOmitNullableQueryParameterWhenNullPassedExplicitly(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when
+        $request = $impl->nullableDefaultQueryValue(null)->request();
+
+        // then
+        $this->assertSame('/v1/personFields?limit=1000', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldForwardByReferenceParameterValue(): void
+    {
+        // given
+        $service = new ReflectionClass(VariousParameters::class);
+        $impl = $this->defaultProxyFactory->create($this->retrofit, $service);
+        $this->assertInstanceOf(VariousParameters::class, $impl);
+
+        // when
+        $id = 7;
+        $request = $impl->passedByReference($id)->request();
+
+        // then
+        $this->assertSame('/users/7', $request->getUri()->__toString());
+    }
+
+    #[Test]
     public function shouldNotCrashWhenCreatingProxyForSameInterfaceTwice(): void
     {
         // given
