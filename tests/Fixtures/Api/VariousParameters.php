@@ -16,6 +16,14 @@ interface VariousParameters
     #[ResponseBody('void')]
     public function defaultValue(#[Path('id')] int $id = 100): Call;
 
+    #[GET('/v1/personFields?limit=1000')]
+    #[ResponseBody('void')]
+    public function defaultQueryValue(#[Query('offset')] int $offset = 100): Call;
+
+    #[GET('/v1/personFields?limit=1000')]
+    #[ResponseBody('void')]
+    public function nullableDefaultQueryValue(#[Query('offset')] ?int $offset = 100): Call;
+
     #[GET('/users/{id}')]
     #[ResponseBody('void')]
     public function passedByReference(#[Path('id')] int &$id): Call;

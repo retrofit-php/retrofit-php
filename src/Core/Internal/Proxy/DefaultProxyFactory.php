@@ -10,8 +10,9 @@ use PhpParser\Builder\Namespace_;
 use PhpParser\Builder\Param;
 use PhpParser\BuilderFactory;
 use PhpParser\Node\Arg;
+use PhpParser\Node\ArrayItem;
+use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\Assign;
-use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Expr\PropertyFetch;
@@ -60,7 +61,7 @@ use Override;
  *      #[\Retrofit\Attribute\GET('/users/{id}')]
  *      public function getUser(#[\Retrofit\Attribute\Path('id')] int $id): \Retrofit\Call
  *      {
- *          return $this->serviceMethodFactory->create('\\Retrofit\\Tests\\Fixtures\\SomeApi', __FUNCTION__)->invoke(func_get_args());
+ *          return $this->serviceMethodFactory->create('\\Retrofit\\Tests\\Fixtures\\SomeApi', __FUNCTION__)->invoke([$id]);
  *      }
  * }
  * </pre>
@@ -165,8 +166,6 @@ readonly class DefaultProxyFactory implements ProxyFactory
      */
     private function appendMethods(ReflectionClass $service, Class_ $serviceClassImplementation): void
     {
-        $serviceMethodInvokeReturnStmt = $this->createServiceMethodInvokeReturnStmt($service);
-
         $methods = $service->getMethods();
         foreach ($methods as $method) {
             $this->validateMethodReturnType($method);
@@ -184,6 +183,8 @@ readonly class DefaultProxyFactory implements ProxyFactory
             if (!$returnType instanceof ReflectionNamedType) {
                 throw Utils::methodException($method, 'Cannot detect return type name.');
             }
+
+            $serviceMethodInvokeReturnStmt = $this->createServiceMethodInvokeReturnStmt($service, $method);
 
             $serviceClassMethodImplementation->setReturnType(Utils::toFQCN($returnType->getName()));
             $serviceClassMethodImplementation->addStmt(new Return_($serviceMethodInvokeReturnStmt));
@@ -203,7 +204,7 @@ readonly class DefaultProxyFactory implements ProxyFactory
      * @template T of object
      * @param ReflectionClass<T> $service
      */
-    private function createServiceMethodInvokeReturnStmt(ReflectionClass $service): MethodCall
+    private function createServiceMethodInvokeReturnStmt(ReflectionClass $service, ReflectionMethod $method): MethodCall
     {
         $serviceMethodFactoryCreateMethodCall = new MethodCall(
             new PropertyFetch(new Variable('this'), 'serviceMethodFactory'),
@@ -213,11 +214,20 @@ readonly class DefaultProxyFactory implements ProxyFactory
                 new Arg(new Function_()),
             ],
         );
+
+        // Pass the bound parameter variables explicitly instead of func_get_args() so that
+        // omitted arguments fall back to their declared default values. A trailing variadic
+        // parameter is unpacked to preserve the flattened shape func_get_args() produced.
+        $arguments = [];
+        foreach ($method->getParameters() as $parameter) {
+            $arguments[] = new ArrayItem(new Variable($parameter->getName()), unpack: $parameter->isVariadic());
+        }
+
         return new MethodCall(
             $serviceMethodFactoryCreateMethodCall,
             'invoke',
             [
-                new Arg(new FuncCall(new Name('func_get_args'))),
+                new Arg(new Array_($arguments)),
             ],
         );
     }
