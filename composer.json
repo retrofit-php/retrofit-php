@@ -18,7 +18,7 @@
     "require": {
         "php": ">=8.4.1",
         "guzzlehttp/guzzle": "~7.10.0",
-        "guzzlehttp/psr7": "~2.9.0 || ~2.11.0",
+        "guzzlehttp/psr7": "~2.11.0",
         "letsdrink/ouzo-goodies": "dev-master",
         "nikic/php-parser": "~5.7.0",
         "phpdocumentor/reflection-docblock": "~6.0.3",
