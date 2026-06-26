@@ -115,4 +115,32 @@ class QueryMapParameterHandlerTest extends TestCase
         $request = $this->requestBuilder->build();
         $this->assertSame('https://example.com/users?name=jon+doe&age=34&registered=false', $request->getUri()->__toString());
     }
+
+    #[Test]
+    public function shouldAddSingleElementArrayValueAsRepeatedQueryParam(): void
+    {
+        // given
+        $queryMapParameterHandler = new QueryMapParameterHandler(false, BuiltInConverters::ToStringConverter(), $this->reflectionMethod, 0);
+
+        // when
+        $queryMapParameterHandler->apply($this->requestBuilder, ['ids' => [671]]);
+
+        // then
+        $request = $this->requestBuilder->build();
+        $this->assertSame('https://example.com/users?ids=671', $request->getUri()->__toString());
+    }
+
+    #[Test]
+    public function shouldAddMultipleElementArrayValueAsRepeatedQueryParams(): void
+    {
+        // given
+        $queryMapParameterHandler = new QueryMapParameterHandler(false, BuiltInConverters::ToStringConverter(), $this->reflectionMethod, 0);
+
+        // when
+        $queryMapParameterHandler->apply($this->requestBuilder, ['ids' => [671, 672, 673]]);
+
+        // then
+        $request = $this->requestBuilder->build();
+        $this->assertSame('https://example.com/users?ids=671&ids=672&ids=673', $request->getUri()->__toString());
+    }
 }

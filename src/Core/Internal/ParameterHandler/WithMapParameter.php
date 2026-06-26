@@ -37,10 +37,10 @@ trait WithMapParameter
                 );
             }
 
-            $originalValue = $entryValue;
-            $entryValue = $converter->convert($entryValue);
-
-            $apply($entryKey, $entryValue, $originalValue);
+            $elements = is_array($entryValue) ? $entryValue : [$entryValue];
+            foreach ($elements as $element) {
+                $apply($entryKey, $converter->convert($element), $element);
+            }
         }
     }
 }
