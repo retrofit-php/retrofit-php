@@ -15,4 +15,4 @@ jobs:
 
     steps:
       - name: Triage labels
-        uses: actions/labeler@v6.2.0
+        uses: actions/labeler@v7.0.0
